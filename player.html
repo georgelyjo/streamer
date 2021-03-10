@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Streamer</title>
+</head>
+<body>
+
+<div id="player" class="webtor" />
+    <script>
+        window.webtor = window.webtor || [];
+	var link = prompt("enter the link");
+        window.webtor.push({
+            id: 'player',
+            magnet: link,
+	  
+	    width: '100%',
+            on: function(e) {
+                if (e.name == window.webtor.TORRENT_FETCHED) {
+                    console.log('Torrent fetched!', e.data);
+                }
+                if (e.name == window.webtor.TORRENT_ERROR) {
+                    console.log('Torrent error!');
+                }
+            },
+            poster: 'https://via.placeholder.com/150/0000FF/808080?Text=Sintel',
+            subtitles: [
+                {
+                    srclang: 'en',
+                    label: 'test',
+                    src: 'https://raw.githubusercontent.com/andreyvit/subtitle-tools/master/sample.srt',
+                }
+            ],
+            lang: 'en',
+            i18n: {
+                en: {
+                    common: {
+                        "prepare to play": "Preparing Video Stream... Please Wait...",
+                    },
+                    stat: {
+                        "seeding": "Seeding",
+                        "waiting": "Client initialization",
+                        "waiting for peers": "Waiting for peers",
+                        "from": "from",
+                    },
+                },
+            },
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@webtor/player-sdk-js/dist/index.min.js" charset="utf-8"></script>
+</body>
+</html>
